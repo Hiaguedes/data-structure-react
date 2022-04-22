@@ -6,17 +6,13 @@ const Stack = () => {
     const inputRef = React.useRef<any>(null);
     const [inputValue, setInputValue] = React.useState('0');
 
-    React.useEffect(() => {
-        console.log('valores', stack.values())
-    }, [stack])
-
     const RenderStackValues = React.useCallback(() => {
 
         if(stack.isEmpty()){
             return (<p>nao temos valores na pilha</p>)
         }
 
-        return stack.values().map(value => (<p>{value}</p>))
+        return stack.values().reverse().map(value => (<p>{value}</p>))
     }, [stack])
 
     return (

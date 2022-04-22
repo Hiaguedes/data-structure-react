@@ -6,10 +6,6 @@ const Queue = () => {
     const inputRef = React.useRef<any>(null);
     const [inputValue, setInputValue] = React.useState('0');
 
-    React.useEffect(() => {
-        console.log('valores', queue.values())
-    }, [queue])
-
     const RenderQueueValues = React.useCallback(() => {
 
         if(queue.isEmpty()){
