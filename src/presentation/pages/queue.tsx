@@ -1,27 +1,27 @@
 import React from "react"
-import useStack from "../hooks/useStack";
+import useQueue from "../hooks/useQueue";
 
-const Stack = () => {
-    const stack = useStack<number>();
+const Queue = () => {
+    const queue = useQueue<number>();
     const inputRef = React.useRef<any>(null);
     const [inputValue, setInputValue] = React.useState('0');
 
     React.useEffect(() => {
-        console.log('valores', stack.values())
-    }, [stack])
+        console.log('valores', queue.values())
+    }, [queue])
 
-    const RenderStackValues = React.useCallback(() => {
+    const RenderQueueValues = React.useCallback(() => {
 
-        if(stack.isEmpty()){
-            return (<p>nao temos valores na pilha</p>)
+        if(queue.isEmpty()){
+            return (<p>nao temos valores na fila</p>)
         }
 
-        return stack.values().map(value => (<p>{value}</p>))
-    }, [stack])
+        return queue.values().map(value => (<p>{value}</p>))
+    }, [queue])
 
     return (
         <>
-            <h1>Pilha</h1>
+            <h1>Fila</h1>
             <input 
                 ref={inputRef}
                 type={'number'}
@@ -29,24 +29,24 @@ const Stack = () => {
                 onChange={(event) => {setInputValue(event.target.value)}} 
             />
             <button 
-                children="Adicionar a pilha"
+                children="Adicionar a fila"
                 onClick={() => {
-                    stack.push(Number(inputValue));
+                    queue.enqueue(Number(inputValue));
                     setInputValue('')
                     inputRef.current.focus();
                 }}
             />
             <button 
-                children="Tirar da pilha"
+                children="Tirar da fila"
                 onClick={() => {
-                    stack.pop();
+                    queue.dequeue();
                     setInputValue('');
                     inputRef?.current.focus();
                 }}
             />
-            {RenderStackValues()}
+            {RenderQueueValues()}
         </>
     )
 }
 
-export default Stack;
+export default Queue;
