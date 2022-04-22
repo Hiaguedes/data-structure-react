@@ -1,11 +1,11 @@
 
 import React from 'react'
 
+import Stack from './presentation/pages/stack'
+
 const App = () => {
   return (
-    <h1>
-     Create React App Without CRA ☘️!
-    </h1>
+    <Stack />
   )
 }
 
